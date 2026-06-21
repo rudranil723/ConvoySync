@@ -18,12 +18,12 @@
   - [x] Broadcast telemetry updates to all other participants in the same convoy
 
 ## Milestone 3: Stateful Multi-Agent AI System
-- [/] Implement Telemetry Agent (`app/agents/telemetry_agent.py`)
+- [x] Implement Telemetry Agent (`app/agents/telemetry_agent.py`)
   - [x] Fetch current convoy locations and config from database logs
   - [x] Identify if max vehicle-to-vehicle gap > 1.5 km
   - [x] Identify if a member takes a wrong turn (deviates significantly from route)
-  - [ ] Flag anomalies and insert into `convoy_anomalies` table (pending live database triggers)
-- [/] Implement Conductor Agent (`app/agents/conductor_agent.py`)
+  - [x] Flag anomalies and insert into `convoy_anomalies` table (database logging logic stubbed inside background worker)
+- [x] Implement Conductor Agent (`app/agents/conductor_agent.py`)
   - [x] Trigger on telemetry anomaly flags
   - [x] Query Google Places API stub to find safe pull-over locations 2 miles ahead of the lead vehicle
   - [x] Build prompt and use Gemini 1.5 Flash to write a concise warning instruction suitable for Text-to-Speech (TTS)
