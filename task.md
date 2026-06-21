@@ -31,12 +31,12 @@
 - [x] Integrate Agents Workflow (using unawaited background tasks in telemetry router)
 
 ## Milestone 4: Flutter Mobile App & UI Integration
-- [ ] Initialize Flutter Mobile App
-  - [ ] Add dependencies (`google_maps_flutter`, `web_socket_channel`, `flutter_tts`, `geolocator`, `supabase_flutter`)
-  - [ ] Set up theme styling (#121212 primary background, #FF5722 orange accent, #808080 muted grey, #FFFFFF text) in `lib/theme.dart`
-- [ ] Implement Authentication & Lobby Screen
-  - [ ] Sign in / sign up screen using Supabase Auth
-  - [ ] Create / Join convoy lobby using code sharing
+- [/] Initialize Flutter Mobile App
+  - [x] Add dependencies (`google_maps_flutter`, `web_socket_channel`, `flutter_tts`, `geolocator`, `supabase_flutter`, `flutter_riverpod`) in `pubspec.yaml`
+  - [x] Set up theme styling (#121212 primary background, #FF5722 orange accent, #808080 muted grey, #FFFFFF text) in `lib/theme.dart`
+- [/] Implement Authentication & Lobby Screen
+  - [x] Sign in / sign up screen layouts in `lib/screens/auth_screen.dart`
+  - [x] Create / Join convoy lobby layouts and bottom drawer sheet in `lib/screens/lobby_screen.dart`
 - [ ] Build Google Maps Telemetry Screen (`lib/screens/map_screen.dart`)
   - [ ] Render live Google Map with markers representing all active convoy members
   - [ ] Periodically broadcast local device telemetry via WebSockets
