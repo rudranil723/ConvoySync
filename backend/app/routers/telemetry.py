@@ -267,6 +267,12 @@ async def telemetry_websocket(
                 }
             }
 
+            # Spawn anomaly processing asynchronously in the background if flags are triggered
+            if distance_exceeded or wrong_turn:
+                import asyncio
+                from app.agents.telemetry_agent import process_anomaly_event
+                asyncio.create_task(process_anomaly_event(convoy_id, profile_id, broadcast_payload))
+
             # 4. Broadcast the telemetry log payload to all other convoy members
             await manager.broadcast_to_convoy(convoy_id, broadcast_payload, exclude_profile_id=profile_id)
 

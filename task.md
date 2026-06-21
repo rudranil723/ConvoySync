@@ -18,17 +18,17 @@
   - [x] Broadcast telemetry updates to all other participants in the same convoy
 
 ## Milestone 3: Stateful Multi-Agent AI System
-- [ ] Implement Telemetry Agent (`app/agents/telemetry_agent.py`)
-  - [ ] Fetch current convoy locations from the real-time cache or latest database logs
-  - [ ] Identify if max vehicle-to-vehicle gap > 1.5 km
-  - [ ] Identify if a member takes a wrong turn (deviates significantly from route)
-  - [ ] Flag anomalies and insert into `convoy_anomalies` table
-- [ ] Implement Conductor Agent (`app/agents/conductor_agent.py`)
-  - [ ] Trigger on telemetry anomaly flags
-  - [ ] Query Google Places API to find safe pull-over locations (e.g. gas station, rest stop) 2 miles ahead of the lead vehicle
-  - [ ] Build prompt and use Gemini 1.5 Flash to write a concise warning instruction suitable for Text-to-Speech (TTS)
-  - [ ] Push safety instruction to the WebSocket manager for broadcasting to the convoy
-- [ ] Integrate Agents Workflow (using LangGraph or custom stateful workers)
+- [/] Implement Telemetry Agent (`app/agents/telemetry_agent.py`)
+  - [x] Fetch current convoy locations and config from database logs
+  - [x] Identify if max vehicle-to-vehicle gap > 1.5 km
+  - [x] Identify if a member takes a wrong turn (deviates significantly from route)
+  - [ ] Flag anomalies and insert into `convoy_anomalies` table (pending live database triggers)
+- [/] Implement Conductor Agent (`app/agents/conductor_agent.py`)
+  - [x] Trigger on telemetry anomaly flags
+  - [x] Query Google Places API stub to find safe pull-over locations 2 miles ahead of the lead vehicle
+  - [x] Build prompt and use Gemini 1.5 Flash to write a concise warning instruction suitable for Text-to-Speech (TTS)
+  - [x] Push safety instruction to the WebSocket manager for broadcasting to the convoy
+- [x] Integrate Agents Workflow (using unawaited background tasks in telemetry router)
 
 ## Milestone 4: Flutter Mobile App & UI Integration
 - [ ] Initialize Flutter Mobile App
