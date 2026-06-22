@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/theme.dart';
+import 'package:frontend/providers/lobby_provider.dart';
+import 'package:frontend/providers/telemetry_provider.dart';
+import 'map_screen.dart';
 
 class ConvoySession {
   final String name;
@@ -15,14 +19,14 @@ class ConvoySession {
   });
 }
 
-class LobbyScreen extends StatefulWidget {
+class LobbyScreen extends ConsumerStatefulWidget {
   const LobbyScreen({super.key});
 
   @override
-  State<LobbyScreen> createState() => _LobbyScreenState();
+  ConsumerState<LobbyScreen> createState() => _LobbyScreenState();
 }
 
-class _LobbyScreenState extends State<LobbyScreen> {
+class _LobbyScreenState extends ConsumerState<LobbyScreen> {
   // Initialize with a mock active convoy session
   final List<ConvoySession> _convoys = [
     ConvoySession(
@@ -464,12 +468,15 @@ class _LobbyScreenState extends State<LobbyScreen> {
         trailing: IconButton(
           icon: const Icon(Icons.chevron_right, color: ConvoyTheme.textSecondary),
           onPressed: () {
-            // Placeholder: Navigate to active maps screen later
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Opening maps for ${session.name}...'),
-                backgroundColor: ConvoyTheme.primary,
-              ),
+            // Update lobby provider with selected convoy and navigate to MapScreen
+            ref.read(lobbyProvider.notifier).selectConvoy(
+              'convoy-${session.code}',
+              session.code,
+              'leader',
+            );
+            ref.read(telemetryProvider.notifier).clearTelemetry();
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const MapScreen()),
             );
           },
         ),

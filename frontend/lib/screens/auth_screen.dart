@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/theme.dart';
+import 'package:frontend/providers/lobby_provider.dart';
 import 'lobby_screen.dart';
 
-class AuthScreen extends StatefulWidget {
+class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  ConsumerState<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -21,6 +23,13 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void _handleSignIn() {
+    // Select a default lobby in provider upon sign-in to show Riverpod state linkage
+    ref.read(lobbyProvider.notifier).selectConvoy(
+      'mock-convoy-uuid',
+      'J6LU80',
+      'leader',
+    );
+    
     // Navigate to Dashboard / Lobby Screen
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => const LobbyScreen()),

@@ -37,7 +37,19 @@
 - [/] Implement Authentication & Lobby Screen
   - [x] Sign in / sign up screen layouts in `lib/screens/auth_screen.dart`
   - [x] Create / Join convoy lobby layouts and bottom drawer sheet in `lib/screens/lobby_screen.dart`
-- [ ] Build Google Maps Telemetry Screen (`lib/screens/map_screen.dart`)
-  - [ ] Render live Google Map with markers representing all active convoy members
-  - [ ] Periodically broadcast local device telemetry via WebSockets
-  - [ ] Handle incoming WebSocket alert payloads and feed them to the native Text-To-Speech engine using `flutter_tts`
+- [x] Build Google Maps Telemetry Screen (`lib/screens/map_screen.dart`)
+  - [x] Render live Google Map with dark mode style JSON and real-time rider markers
+  - [x] Camera follows device GPS position continuously via location_service
+  - [x] Periodically broadcast local device telemetry via WebSockets
+  - [x] Animated HUD overlay with speed, distance-to-leader, and cross-track error metrics
+  - [x] Pulsing vivid orange warning banner on wrong_turn or distance_exceeded flags
+  - [x] "Simulate Anomaly" dev button injects mock payload and triggers TTS vocalization
+  - [x] Handle incoming WebSocket alert payloads and feed them to the native TTS engine using `flutter_tts`
+- [x] Implement Services Layer (`lib/services/`)
+  - [x] `supabase_service.dart` — signIn, signUp, real-time convoy/member streams
+  - [x] `websocket_service.dart` — connect, streamTelemetry, ai_alert callback hook
+  - [x] `location_service.dart` — GPS permission handling, position stream
+  - [x] `tts_service.dart` — native TTS with audio focus and duck-others config
+- [x] Implement Riverpod Providers (`lib/providers/`)
+  - [x] `lobby_provider.dart` — active convoy ID, code, and user role state
+  - [x] `telemetry_provider.dart` — rider telemetry map, alert history buffer

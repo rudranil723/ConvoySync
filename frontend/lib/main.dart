@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'theme.dart';
 import 'screens/auth_screen.dart';
 
 void main() {
-  runApp(const ConvoySyncApp());
+  runApp(
+    const ProviderScope(
+      child: ConvoySyncApp(),
+    ),
+  );
 }
 
 class ConvoySyncApp extends StatelessWidget {
